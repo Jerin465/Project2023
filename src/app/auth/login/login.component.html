@@ -1,0 +1,44 @@
+<div [@routerTransition]>
+    <div class="circle"></div>
+    <div class="circle-sec"></div>
+    <div class="container login-container">
+        <div class="row justify-content-end align-items-center">
+            <div class="col-md-4 align-self-center">
+                <h1 class="display-3">test</h1>
+
+            </div>
+            <div class="col-md-5">
+                <div class="card shadow text-center pt-3 pb-3">
+                    <div class="card-body m-4">
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <input type="text" formControlName="username" placeholder="Username"
+                                    class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                    <div *ngIf="f.username.errors.required">Username is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group pt-5">
+                                <input type="password" formControlName="password" placeholder="Password"
+                                    class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group pt-5">
+                                <button type="submit" [disabled]="loading||!form.valid" class="btn btn-primary">
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    Login
+                                </button>
+                                <alert-msg></alert-msg>
+                            </div>
+                            <div class="form-group pt-2">
+                                <span>Not registered? <a class="link-primary" routerLink="../register">create account</a></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

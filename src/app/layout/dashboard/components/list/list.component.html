@@ -1,0 +1,21 @@
+<div class="row p-2">
+    <div class="col-md-1">
+        <h4 class="text-muted">{{title}}</h4>
+    </div>
+    <div class="col-md-11">
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <ng-container *ngFor="let item of data">
+        <div class="col-md-4 text-primary">
+            <app-stat>
+                <div class="card-body m-4 text-primary">
+                    <p class="card-text lead">{{item.title}}</p>
+                    <h3 class="card-title ">{{item.count | number}}</h3>
+                </div>
+            </app-stat>
+        </div>
+    </ng-container>
+</div>

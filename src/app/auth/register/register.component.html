@@ -1,0 +1,59 @@
+<div [@routerTransition]>
+    <div class="circle"></div>
+    <div class="circle-sec"></div>
+    <div class="container login-container">
+        <div class="row justify-content-end align-items-center">
+            <div class="col-md-4 align-self-center">
+                <h1 class="display-3">test</h1>
+
+            </div>
+            <div class="col-md-5">
+                <div class="card shadow text-center pt-3 pb-3">
+                    <div class="card-body m-4">
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="form-group pt-2">
+                                <input type="text" formControlName="name" placeholder="Name" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors.required">Name is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group pt-2">
+                                <input type="text" formControlName="deponame" placeholder="Depo Name"
+                                    class="form-control" [ngClass]="{ 'is-invalid': submitted && f.deponame.errors }" />
+                                <div *ngIf="submitted && f.deponame.errors" class="invalid-feedback">
+                                    <div *ngIf="f.deponame.errors.required">Depo Name is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group pt-2">
+                                <input type="text" formControlName="mobileNumber" placeholder="Mobile Number"
+                                    class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" />
+                                <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+                                    <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group pt-2">
+                                <input type="text" formControlName="password" placeholder="Password"
+                                    class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group pt-2">
+                                <button type="submit" [disabled]="loading||!form.valid" class="btn btn-primary">
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    Register
+                                </button>
+                                <button class="btn btn-dark ms-2" routerLink="../login">
+                                    Cancel
+                                </button>
+                                <alert-msg></alert-msg>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

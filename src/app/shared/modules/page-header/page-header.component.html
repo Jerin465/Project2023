@@ -1,0 +1,13 @@
+<div class="row p-2">
+    <div class="col-xl-12">
+        <h6 class="page-header display-6">
+            {{ heading }}
+        </h6>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <i [class]="icon"></i> <a [routerLink]="routeLink" href="Javascript:void(0)">&nbsp;{{subHeading}}</a>
+            </li>
+            <li class="breadcrumb-item active">{{ child }}</li>
+        </ol>
+    </div>
+</div>

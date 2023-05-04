@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col">
+        <app-page-header [heading]="'Users'" [subHeading]="'Users'" [child]="linkName" [routeLink]="'/users'"
+            [icon]="'fa fa-flag'"></app-page-header>
+    </div>
+</div>
+<hr />
+<div class="row p-3">
+    <strong *ngIf="editData?.name" class="col-md-3 display-6 text-muted"> Edit {{editData?.name}}</strong>
+    <strong *ngIf="!editData" class="col-md-3 display-6 text-muted"> Add User</strong>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body pb-5">
+                    <div class="form-row p-3 row">
+                        <div class="form-group col-md-6">
+                            <label for="cases">Name</label>
+                            <input type="text" formControlName="name" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required">Cases is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="depoName">Department Name</label>
+                            <input type="text" formControlName="depoName" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.depoName.errors }" />
+                            <div *ngIf="submitted && f.depoName.errors" class="invalid-feedback">
+                                <div *ngIf="f.depoName.errors.required">Deaths is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row p-3 row">
+                        <div class="form-group col-md-6">
+                            <label for="mobileNumber">Mobile Number</label>
+                            <input type="text" formControlName="mobileNumber" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" />
+                            <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+                                <div *ngIf="f.mobileNumber.errors.required">Recovered is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <alert-msg></alert-msg>
+
+                </div>
+            </div>
+        </div>
+        <div class="row pt-4">
+            <div class="col-md-10 text-end">
+                <button type="button" class="btn btn-outline-dark btn-rounded" routerLink="/users">
+                    &nbsp;Cancel&nbsp;
+                </button>&nbsp;
+                <button type="submit" [disabled]="loading" class="btn btn-primary btn-rounded">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
+                    &nbsp; Save&nbsp;
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,27 @@
+.login-container {
+    margin-top: 15%;
+    margin-bottom: 5%;
+}
+
+.circle {
+    position: absolute;
+    transform: translate(-30%, -80%);
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: #00c6ff;
+    background: -webkit-linear-gradient(to right, #A6FFCB, #00c6ff);
+    background: linear-gradient(to right, #6985e0 , #12D8FA);
+
+}
+
+.circle-sec {
+    position: absolute;
+    transform: translate(-30%, -5%);
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: #1FA2FF;
+    background: -webkit-linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);
+    background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);
+}
