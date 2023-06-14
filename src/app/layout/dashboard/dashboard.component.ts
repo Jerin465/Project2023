@@ -10,37 +10,28 @@ import { DashboardService } from './../../services/dashboard.service';
 })
 export class DashboardComponent implements OnInit {
     // lineChart
-    public lineChartData: Array<any> = [
-        { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-        { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-        { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
-    ];
-    public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    public lineChartData: Array<any> = [{ data: [], label: 'Monthly Collection' }];
+    public lineChartLabels: Array<any> = [];
+    public lineDailyChartData: Array<any> = [{ data: [], label: 'Daily Collection' }];
+    public lineDailyChartLabels: Array<any> = [];
     public lineChartOptions: any = {
         responsive: true
     };
-    public lineChartColors: Array<any> = [
+    public lineDailyChartColors: Array<any> = [
         {
             // grey
-            backgroundColor: 'rgba(148,159,177,0.2)',
+            backgroundColor: '#58e97d',
             borderColor: 'rgba(148,159,177,1)',
             pointBackgroundColor: 'rgba(148,159,177,1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-        },
-        {
-            // dark grey
-            backgroundColor: 'rgba(77,83,96,0.2)',
-            borderColor: 'rgba(77,83,96,1)',
-            pointBackgroundColor: 'rgba(77,83,96,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(77,83,96,1)'
-        },
+        }
+    ];
+    public lineChartColors: Array<any> = [
         {
             // grey
-            backgroundColor: 'rgba(148,159,177,0.2)',
+            backgroundColor: '#535353',
             borderColor: 'rgba(148,159,177,1)',
             pointBackgroundColor: 'rgba(148,159,177,1)',
             pointBorderColor: '#fff',
@@ -49,16 +40,24 @@ export class DashboardComponent implements OnInit {
         }
     ];
     public lineChartLegend: boolean = true;
-    public lineChartType: string = 'line';
+    public lineChartType: string = 'bar';
     constructor(public dashboardService: DashboardService) {}
 
     ngOnInit() {
-        this.getUserList();
+        this.getGraphData();
     }
 
-    getUserList() {
+    getGraphData() {
         this.dashboardService.getAll().subscribe((result: any) => {
-            console.log(result);
+            if (result) {
+                const { MonthlyData, dailyData } = result;
+                this.lineChartLabels = MonthlyData.map((_x) => _x.dateValue);
+                this.lineChartData[0].data = MonthlyData.map((_x) => _x.total);
+                console.log(dailyData);
+
+                this.lineDailyChartLabels = dailyData.map((_x) => _x.dateValue);
+                this.lineDailyChartData[0].data = dailyData.map((_x) => _x.total);
+            }
         });
     }
 

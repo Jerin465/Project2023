@@ -5,7 +5,13 @@
     </div>
 
 
-    <div class="d-flex justify-content-start">
+    <div class="d-flex justify-content-center gap-5">
+        <div class="card">
+            <canvas baseChart width="400" height="400" [datasets]="lineDailyChartData" [labels]="lineDailyChartLabels"
+                [options]="lineChartOptions" [colors]="lineDailyChartColors" [legend]="lineChartLegend"
+                [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+        </div>
         <div class="card">
             <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
                 [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
